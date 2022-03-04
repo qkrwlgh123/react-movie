@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import styles from './Detail.module.css';
 
 function Detail() {
   const [loading, setLoading] = useState(true);
@@ -19,22 +20,25 @@ function Detail() {
   }, []);
   console.log(movie);
   return (
-    <div>
+    <div className={styles.movie}>
       {loading ? (
-        <h1>loading...</h1>
+        <h1 className={styles.loader}>loading...</h1>
       ) : (
-        <div>
-          <img src={movie.medium_cover_image} />
-          <h2>{movie.title_long}</h2>
-          <h2>{movie.language}</h2>
-          <h3>{movie.rating} rating</h3>
-          <h3>{movie.runtime} minutes</h3>
-          <ul>
-            {movie.genres.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <h3>{movie.description_intro}</h3>
+        <div className={styles.title}>
+          <img src={movie.medium_cover_image} className={styles.image} />
+          <h1>{movie.title_long}</h1>
+          <h2>Language : {movie.language}</h2>
+          <h2>Rating : {movie.rating}</h2>
+          <h2>Run time : {movie.runtime} minutes</h2>
+          <div className={styles.genre}>
+            <h2>genres </h2>
+            <ul className={styles.genres}>
+              {movie.genres.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <h2>Description : {movie.description_intro}</h2>
           <h1>Downloads</h1>
           <ul>
             {movie.torrents.map((item) => (
