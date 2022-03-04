@@ -8,12 +8,14 @@ function Movie({ id, coverImage, title, summary, genres }) {
       <h2>
         <Link to={`movie/${id}`}>{title}</Link>
       </h2>
+      {genres ? (
+        <ul>
+          {genres.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      ) : null}
       <p>{summary}</p>
-      <ul>
-        {genres.map((g) => (
-          <li key={g}>{g}</li>
-        ))}
-      </ul>
     </div>
   );
 }
@@ -23,7 +25,6 @@ Movie.propTypes = {
   coverImage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Movie;

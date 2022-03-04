@@ -4,11 +4,15 @@ import Movie from '../conponents/Movie';
 function Home() {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
+  const [rating, setRating] = useState('');
 
+  const handleRating = (event) => {
+    setRating(event.target.value);
+  };
   const getMovies = async () => {
     const json = await (
       await fetch(
-        `https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`
+        `https://yts.mx/api/v2/list_movies.json?minimum_rating=${rating}&sort_by=year`
       )
     ).json();
     setMovies(json.data.movies);
@@ -17,9 +21,12 @@ function Home() {
 
   useEffect(() => {
     getMovies();
-  }, []);
+  }, [rating]);
   return (
     <div>
+      <h1>
+        Please type a rating : <input value={rating} onChange={handleRating} />
+      </h1>
       {loading ? (
         <h1>Loading...</h1>
       ) : (

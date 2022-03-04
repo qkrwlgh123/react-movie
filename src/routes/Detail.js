@@ -38,8 +38,8 @@ function Detail() {
           <h1>Downloads</h1>
           <ul>
             {movie.torrents.map((item) => (
-              <a href={item.url}>
-                <li key={item.url}>{item.url}</li>
+              <a key={item.url} href={item.url}>
+                <li>{item.url}</li>
               </a>
             ))}
           </ul>
