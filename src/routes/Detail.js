@@ -25,7 +25,11 @@ function Detail() {
         <h1 className={styles.loader}>loading...</h1>
       ) : (
         <div className={styles.title}>
-          <img src={movie.medium_cover_image} className={styles.image} />
+          <img
+            src={movie.medium_cover_image}
+            alt="movie_image"
+            className={styles.image}
+          />
           <h1>{movie.title_long}</h1>
           <h2>Language : {movie.language}</h2>
           <h2>Rating : {movie.rating}</h2>
